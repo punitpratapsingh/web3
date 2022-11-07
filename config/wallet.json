@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Matic Token",
+        "symbol": "MATIC",
+        "Address": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0"
+    },
+    {
+        "name": "Tether USD",
+        "symbol": "USDT",
+        "Address": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+    }
+]

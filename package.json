@@ -1,0 +1,27 @@
+{
+    "name": "portfolio-backend",
+    "version": "1.0.0",
+    "description": "Portfolio-simple",
+    "main": "index.js",
+    "dependencies": {
+        "async": "^3.2.4",
+        "axios": "^0.27.2",
+        "cors": "^2.8.5",
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "express-fileupload": "^1.4.0",
+        "json2csv": "^5.0.7",
+        "nodemon": "^2.0.16",
+        "serverless": "^3.20.0",
+        "serverless-dotenv-plugin": "^4.0.1",
+        "serverless-http": "^3.0.1",
+        "serverless-offline": "^8.8.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "serverless offline",
+        "deploy": "serverless deploy"
+    },
+    "author": "Harshad-rk",
+    "license": "ISC"
+}

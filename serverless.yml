@@ -1,0 +1,35 @@
+service: PortFolio-simple
+
+# frameworkVersion: '3'
+provider:
+    name: aws
+    runtime: nodejs14.x
+    versionFunctions: false
+    stage: dev
+    tracing: true
+    region: us-east-2
+    apiGateway:
+        binaryMediaTypes:
+            - "*/*"
+
+functions:
+    app:
+        handler: index.serverless
+        events:
+            - http: ANY /
+            - http: "ANY /{proxy+}"
+    # cronJob:
+    #     handler: cronjob.referralDistributionFun
+    #     events:
+    #         - schedule: rate(1 day)
+
+plugins:
+    - serverless-dotenv-plugin
+    - serverless-offline
+
+custom:
+    serverless-offline:
+        allowCache: false
+    dotenv:
+        exclude:
+            - NODE_ENV

@@ -1,0 +1,35 @@
+name: deploy to lambda
+# Controls when the workflow will run
+on:
+    # Triggers the workflow on push or pull req events but only for the master branch
+    push:
+        tags: prod-[1-9]+.[0-9]+.[0-9]+
+        
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+jobs:
+    deploy_source:
+        name: build and deploy lambda
+        strategy:
+            matrix:
+                node-version: [14.x]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Use an action provided from github market place to checkout the source code
+              uses: actions/checkout@master
+            - name: Setup Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@master
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install Dependencies
+              run: npm install
+            - name: Configure AWS Credentials
+              uses: aws-actions/configure-aws-credentials@master
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: us-east-2
+            - name: Serverless deploy
+              run: npm run-script deploy
